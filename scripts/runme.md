@@ -1,0 +1,3 @@
+```zsh
+source zkcomp.zsh
+```
