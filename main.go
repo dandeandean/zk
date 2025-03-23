@@ -14,6 +14,7 @@ import (
 	"github.com/alecthomas/kong"
 	"github.com/zk-org/zk/internal/cli"
 	"github.com/zk-org/zk/internal/cli/cmd"
+	"github.com/zk-org/zk/internal/cli/cmp"
 	"github.com/zk-org/zk/internal/core"
 	executil "github.com/zk-org/zk/internal/util/exec"
 )
@@ -88,6 +89,10 @@ func main() {
 	} else {
 		parser, err := kong.New(&root, options(container)...)
 		fatalIfError(err)
+		// Hook up the completion into the cmd name
+		// This affects the .rc output on COMP_INSTALL=1 zk
+		cmp.CmpZk.Complete("zk")
+
 		ctx, err := parser.Parse(args)
 		fatalIfError(err)
 
