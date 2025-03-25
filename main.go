@@ -91,7 +91,7 @@ func main() {
 		fatalIfError(err)
 		// Hook up the completion into the cmd name
 		// This affects the .rc output on COMP_INSTALL=1 zk
-		cmp.CmpZk.Complete("zk")
+		cmp.Completer(container).Complete("zk")
 
 		ctx, err := parser.Parse(args)
 		fatalIfError(err)
